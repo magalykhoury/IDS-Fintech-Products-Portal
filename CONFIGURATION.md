@@ -2,6 +2,20 @@
 
 The API deliberately does not keep database connection details or the JWT signing key in committed configuration.
 
+## Current project status
+
+The verified local configuration uses:
+
+- API: `http://localhost:5242`
+- Frontend: `http://localhost:5173`
+- Database: `IdsFintechPortal`
+- CORS origin: `http://localhost:5173`
+- Git branch: `main`
+
+The public repository is available at
+`https://github.com/magalykhoury/IDS-Fintech-Products-Portal`. Local user-secrets,
+database backups, and optional provider keys remain outside source control.
+
 ## Backend
 
 From `backend/IdsFintechPortal.Api`, configure local development with .NET user secrets:

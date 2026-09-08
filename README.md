@@ -6,6 +6,21 @@ IDS Fintech Products Portal is a local product and delivery management portal fo
 
 The project is designed for a reliable local demonstration. It is not intended to be hosted as part of this submission.
 
+## Current Delivery Status
+
+As of 8 September 2026, the local demo and database handoff have been verified.
+
+- Backend: `http://localhost:5242`
+- Frontend: `http://localhost:5173`
+- Git branch: `main`
+- GitHub: [magalykhoury/IDS-Fintech-Products-Portal](https://github.com/magalykhoury/IDS-Fintech-Products-Portal)
+- Initial release-candidate commit: `d457d25`
+- Working tree: clean
+- Database backup: private `IdsFintechPortal-demo.bak`, excluded from GitHub
+- Demo accounts: `demo.admin`, `demo.viewer`, `demo.manager`, `demo.implementation`, and `demo.developer`
+
+The final RBAC smoke test confirmed that `demo.admin` can access `/users`, `demo.viewer` can log in but cannot access `/users` or write product data, and the API returns HTTP 403 for unauthorized POST, PUT, and DELETE requests.
+
 ## Key Features
 
 ### MVP
@@ -176,3 +191,5 @@ SUBMISSION-CHECKLIST.md         Final packaging and verification checklist
 This project is demonstrated locally through the React development server and the .NET API. No hosting, PWA packaging, desktop wrapper, native mobile project, or cloud deployment is required.
 
 The instructor submission should contain the source and documentation. The SQL Server backup is a private handoff artifact and must remain outside GitHub. Development-only instruction and session files are excluded from the public submission.
+
+The public GitHub repository contains the source, safe SQL scripts, documentation, configuration examples, package-lock files, and design assets. It does not contain database backups, local secrets, user-secrets, build output, dependencies, or browser-test artifacts.

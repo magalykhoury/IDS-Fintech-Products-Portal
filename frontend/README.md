@@ -25,6 +25,17 @@ Live OpenAI-generated answers remain unverified until `OPENAI_API_KEY` is
 configured on the backend. The key must never be placed in this frontend or any
 `VITE_` environment variable.
 
+## Delivery status
+
+The frontend is included in the `main` branch of the public repository:
+
+`https://github.com/magalykhoury/IDS-Fintech-Products-Portal`
+
+The verified local frontend URL is `http://localhost:5173`. Authenticated
+desktop and 390px mobile route checks passed, including the final admin/viewer
+RBAC smoke test. The viewer account can sign in but cannot access user
+administration or product write actions.
+
 ## Technology
 
 - React 19
@@ -52,6 +63,8 @@ npm install
 npm run dev
 ```
 
+If Windows PowerShell blocks `npm.ps1`, use the equivalent `npm.cmd` commands.
+
 The default Vite development URL is `http://localhost:5173` and must be allowed
 by the backend CORS configuration.
 
@@ -76,6 +89,5 @@ controls as authorization.
 ## Further documentation
 
 - Root `README.md`: project overview and current completion status.
-- Root `SESSION_HANDOFF.md`: detailed implementation and verification record.
 - Root `CONFIGURATION.md`: backend secrets, CORS, OpenAI, and database setup.
 - Root `DESIGN.md`: UI direction and constraints.

@@ -8,6 +8,24 @@
 
 The application database is named `IdsFintechPortal`.
 
+## Current verified handoff status
+
+Verified on 8 September 2026:
+
+- Database: `IdsFintechPortal`
+- Products: 3
+- Clients: 3
+- Deployments: 5
+- Environments: 8
+- Servers: 9
+- Product modules: 7
+- Technologies: 6
+- Team members: 5
+- Pending approvals: 1
+- Notifications: 1
+
+The private `IdsFintechPortal-demo.bak` backup was restored successfully as a separate test database and used by the API for login and portal verification. The restore-test database was removed afterward. The primary database was not overwritten.
+
 ## Option A: Restore the private backup
 
 The private instructor package contains `database/IdsFintechPortal-demo.bak`. Restore it as `IdsFintechPortal`. Check logical file names first:
@@ -67,6 +85,7 @@ Do not place real values in this file, SQL scripts, GitHub, screenshots, logs, o
 ## Handoff policy
 
 - The `.bak` is a private submission artifact and is ignored by Git.
+- The `.bak` is not present in the public GitHub repository.
 - The schema and seed scripts are the reproducible public database handoff.
 - All seeded names, emails, clients, products, and infrastructure values are synthetic.
 - No employee, customer, production credential, API key, JWT secret, or database password is included.

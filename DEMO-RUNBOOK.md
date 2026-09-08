@@ -2,6 +2,20 @@
 
 This runbook is the rehearsal script for the local instructor demonstration.
 
+## Current verified status
+
+The documented local demo was verified on 8 September 2026:
+
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:5242`
+- Primary branch: `main`
+- GitHub source: `https://github.com/magalykhoury/IDS-Fintech-Products-Portal`
+- Admin `/users` access passed.
+- Viewer login passed; viewer `/users` and product write actions were blocked.
+- API unauthorized POST, PUT, and DELETE checks returned HTTP 403.
+
+Keep passwords private and outside the repository.
+
 ## A. Before the Demo
 
 - [ ] Laptop is connected to power.
@@ -90,7 +104,7 @@ If PowerShell reports that `npm.ps1` is blocked by execution policy, use
 
 ## D. Rehearsed 8–12 Minute Demo
 
-Use `demo.admin` for the main story and `demo.viewer` for the RBAC comparison. Keep the private credential card off-screen.
+Use `demo.admin` for the main story and `demo.viewer` for the RBAC comparison. Keep the private credentials off-screen.
 
 ### 0:00–0:45 — Login and purpose
 
