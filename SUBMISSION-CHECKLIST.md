@@ -27,7 +27,7 @@ excluded from GitHub. ZIP packaging has not yet been created.
 - [x] `README.md` is concise and current.
 - [x] `DEMO-RUNBOOK.md` has been rehearsed.
 - [x] `DATABASE-HANDOFF.md` has been reviewed.
-- [x] No development-session transcripts or pasted planning material are in the public package.
+- [x] No internal planning material is in the public package.
 
 ## Verification
 
