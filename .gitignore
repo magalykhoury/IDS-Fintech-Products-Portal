@@ -1,0 +1,56 @@
+# Dependencies and build output
+frontend/node_modules/
+frontend/dist/
+backend/**/bin/
+backend/**/obj/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+**/secrets.json
+**/appsettings.Local.json
+
+# Database exports and local database files
+*.bak
+*.mdf
+*.ldf
+*.ndf
+
+# Development and browser-test artifacts
+.playwright-mcp/
+playwright-report/
+test-results/
+qa-artifacts/
+screenshots/
+**/*-qa.*
+*.har
+*.trace.zip
+*.webm
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.temp
+
+# IDE and user-specific files
+.vs/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.user
+*.suo
+*.swp
+*.sln
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Development-only handoff/instruction files
+/AGENTS.md
+/SESSION_HANDOFF.md
