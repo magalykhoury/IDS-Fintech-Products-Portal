@@ -281,6 +281,8 @@ CREATE TABLE dbo.ApprovalRequests
     ReviewComment nvarchar(1000) NULL,
     CreatedAt datetime2(7) NOT NULL CONSTRAINT DF_ApprovalRequests_CreatedAt DEFAULT (sysutcdatetime()),
     ReviewedAt datetime2(7) NULL,
+    CONSTRAINT CK_ApprovalRequests_EntityType CHECK (EntityType IN (N'Deployment')),
+    CONSTRAINT CK_ApprovalRequests_Status CHECK (Status IN (N'Pending', N'Approved', N'Rejected')),
     CONSTRAINT FK_ApprovalRequests_RequestedBy FOREIGN KEY (RequestedByUserId) REFERENCES dbo.Users(Id),
     CONSTRAINT FK_ApprovalRequests_ReviewedBy FOREIGN KEY (ReviewedByUserId) REFERENCES dbo.Users(Id)
 );
@@ -300,6 +302,9 @@ CREATE TABLE dbo.Notifications
     RelatedEntityType nvarchar(50) NULL,
     RelatedEntityId int NULL,
     ReadAt datetime2(7) NULL,
+    CONSTRAINT CK_Notifications_RelatedEntityPair CHECK
+        ((RelatedEntityType IS NULL AND RelatedEntityId IS NULL)
+         OR (RelatedEntityType IS NOT NULL AND RelatedEntityId IS NOT NULL)),
     CONSTRAINT FK_Notifications_User FOREIGN KEY (UserId) REFERENCES dbo.Users(Id)
 );
 GO
