@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { apiFetch } from "../services/api";
 import { canManageProducts } from "../services/permissions";
+import { IconArrowRight } from "@tabler/icons-react";
 import type { Deployment } from "../types/deployment";
 import type { Product } from "../types/product";
 
@@ -360,6 +361,8 @@ export default function ProductDetailsPage() {
     return <p>Product not found.</p>;
   }
 
+  const clientNames = [...new Set(deployments.map((deployment) => deployment.clientName))];
+
   return (
     <div className="product-details-page">
 
@@ -412,6 +415,36 @@ export default function ProductDetailsPage() {
           {error}
         </p>
       )}
+
+      <section className="detail-card product-relationship-card" aria-labelledby="product-footprint-title">
+        <div className="relationship-summary-header">
+          <div>
+            <p className="page-eyebrow">Relationship snapshot</p>
+            <h2 id="product-footprint-title">Product footprint</h2>
+            <p className="section-description">A compact view of where this product is used.</p>
+          </div>
+          <span className="small-badge">{clientNames.length} client{clientNames.length === 1 ? "" : "s"}</span>
+        </div>
+        <div className="relationship-summary-rail">
+          <div className="relationship-summary-node relationship-summary-product">
+            <span>Product</span>
+            <strong>{product.name}</strong>
+            <small>{product.currentVersion ?? "Version not recorded"}</small>
+          </div>
+          <IconArrowRight className="relationship-summary-arrow" size={20} stroke={1.7} aria-hidden="true" />
+          <div className="relationship-summary-node relationship-summary-center">
+            <span>Deployment footprint</span>
+            <strong>{deployments.length}</strong>
+            <small>recorded deployment{deployments.length === 1 ? "" : "s"}</small>
+          </div>
+          <IconArrowRight className="relationship-summary-arrow" size={20} stroke={1.7} aria-hidden="true" />
+          <div className="relationship-summary-node relationship-summary-clients">
+            <span>Clients</span>
+            <strong>{clientNames.length ? clientNames.join(" · ") : "No clients recorded"}</strong>
+            <small>{clientNames.length ? "Connected through deployments" : "No deployment relationship yet"}</small>
+          </div>
+        </div>
+      </section>
 
       <div className="details-grid">
 

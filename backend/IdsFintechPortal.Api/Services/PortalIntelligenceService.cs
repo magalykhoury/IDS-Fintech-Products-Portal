@@ -68,7 +68,7 @@ public sealed partial class PortalIntelligenceService
         {
             return new IntelligenceQueryResponse
             {
-                Answer = "AI-assisted portal search is unavailable because OPENAI_API_KEY is not configured on the API server.",
+                Answer = "API Key not available at this moment.",
                 ProviderStatus = "NotConfigured",
                 Sources = sources
             };

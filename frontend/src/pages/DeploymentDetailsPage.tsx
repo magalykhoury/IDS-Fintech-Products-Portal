@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { apiFetch } from "../services/api";
 import { canManageDeployments } from "../services/permissions";
+import { IconArrowRight } from "@tabler/icons-react";
 import type { Deployment } from "../types/deployment";
 
 interface Environment {
@@ -349,6 +350,8 @@ export default function DeploymentDetailsPage() {
     );
   }
 
+  const environmentNames = environments.map((environment) => environment.name);
+
   return (
     <div className="product-details-page">
 
@@ -395,6 +398,42 @@ export default function DeploymentDetailsPage() {
           {error}
         </p>
       )}
+
+      <section className="detail-card deployment-topology-card" aria-labelledby="deployment-topology-title">
+        <div className="relationship-summary-header">
+          <div>
+            <p className="page-eyebrow">Runtime topology</p>
+            <h2 id="deployment-topology-title">Deployment path</h2>
+            <p className="section-description">The client-facing product instance mapped through its runtime footprint.</p>
+          </div>
+          <span className="small-badge">{deployment.status}</span>
+        </div>
+        <div className="deployment-topology-rail">
+          <Link className="deployment-topology-node" to={`/clients/${deployment.clientId}`}>
+            <span>Client</span>
+            <strong>{deployment.clientName}</strong>
+            <small>Customer relationship</small>
+          </Link>
+          <IconArrowRight className="relationship-summary-arrow" size={20} stroke={1.7} aria-hidden="true" />
+          <Link className="deployment-topology-node deployment-topology-product" to={`/products/${deployment.productId}`}>
+            <span>Product deployment</span>
+            <strong>{deployment.productName}</strong>
+            <small>Version {deployment.productVersion}</small>
+          </Link>
+          <IconArrowRight className="relationship-summary-arrow" size={20} stroke={1.7} aria-hidden="true" />
+          <div className="deployment-topology-node">
+            <span>Environments</span>
+            <strong>{environments.length}</strong>
+            <small>{environmentNames.length ? environmentNames.join(" · ") : "None recorded"}</small>
+          </div>
+          <IconArrowRight className="relationship-summary-arrow" size={20} stroke={1.7} aria-hidden="true" />
+          <div className="deployment-topology-node">
+            <span>Servers</span>
+            <strong>{servers.length}</strong>
+            <small>{servers.length ? "Runtime servers configured" : "None recorded"}</small>
+          </div>
+        </div>
+      </section>
 
       <div className="details-grid">
 

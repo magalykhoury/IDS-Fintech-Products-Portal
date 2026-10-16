@@ -206,6 +206,8 @@ export default function UsersPage() {
 
                 <td>
                   <button
+                    type="button"
+                    className="user-status-button"
                     onClick={() =>
                       toggleStatus(user)
                     }
