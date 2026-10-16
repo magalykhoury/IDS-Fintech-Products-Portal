@@ -1,6 +1,7 @@
 -- IDS Fintech Products Portal - deterministic synthetic demo data
--- Passwords are represented only by BCrypt hashes. Keep the private demo
--- credential card outside source control and public documentation.
+-- Supply private BCrypt hashes through the Demo*PasswordHash environment
+-- variables documented in README.md. No shared demo passwords are published.
+:ON ERROR EXIT
 
 -- Supply the database name with sqlcmd, for example:
 -- sqlcmd -S . -E -C -b -Q ":r database\seed-demo.sql" -v DatabaseName=IdsFintechPortal
@@ -15,6 +16,23 @@ SET CONCAT_NULL_YIELDS_NULL ON;
 SET ARITHABORT ON;
 SET XACT_ABORT ON;
 SET NOCOUNT ON;
+
+-- Validate all supplied hashes before any data changes.
+IF EXISTS (
+    SELECT 1
+    FROM (VALUES
+        (N'$(DemoAdminPasswordHash)'),
+        (N'$(DemoDeveloperPasswordHash)'),
+        (N'$(DemoManagerPasswordHash)'),
+        (N'$(DemoImplementationPasswordHash)'),
+        (N'$(DemoViewerPasswordHash)')
+    ) AS hashes(PasswordHash)
+    WHERE DATALENGTH(PasswordHash) <> 120
+       OR PasswordHash COLLATE Latin1_General_100_BIN2 NOT LIKE N'$2[aby]$[0-9][0-9]$%'
+       OR SUBSTRING(PasswordHash, 8, 53) COLLATE Latin1_General_100_BIN2 LIKE N'%[^./A-Za-z0-9]%'
+       OR TRY_CONVERT(int, SUBSTRING(PasswordHash, 5, 2)) NOT BETWEEN 4 AND 16
+)
+    THROW 50001, 'Supply valid private BCrypt hashes (cost 04-16) for all five demo accounts.', 1;
 
 BEGIN TRANSACTION;
 
